@@ -1,0 +1,14 @@
+*.nc
+*.csv
+*.xls
+*.xlsx
+*.shp
+*.cpg
+*.dbf
+*.prj
+*.html
+*.shx
+*.txt
+*.dta
+*.pyc
+/data/*
