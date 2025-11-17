@@ -498,9 +498,18 @@ selected_countries = ['ZAF','NGA','KEN','ETH','CHN','JPN','AUS','VNM','IND','SAU
                       'GRC','RUS','DEU','ESP','PAN','MEX','USA','ARG','CHL','BRA']
 printssp = ssp50.loc[selected_countries]*1e6
 printfix = fix50.loc[selected_countries]*1e6
-printssp = printssp.rename(columns={'mig_num_tot_outint':'SSP income, out-migration',
-                                    'mig_num_tot_inint': 'SSP income, in-migration'})
-printfix = printfix.rename(columns={'mig_num_tot_outint':'Fix income, out-migration',
-                                    'mig_num_tot_inint': 'Fix income, in-migration'})
-printmig = printssp.join(printfix).sort_values('SSP income, out-migration',ascending=False)
+printssp = printssp.rename(columns={
+    'mig_num_tot_outint':'SSP income, out-migration',
+    'mig_num_tot_inint': 'SSP income, in-migration'})
+printfix = printfix.rename(columns={
+    'mig_num_tot_outint':'Fix income, out-migration',
+    'mig_num_tot_inint': 'Fix income, in-migration'})
+printmig = printssp.join(printfix).sort_values('SSP income, out-migration',
+     ascending=False)
+printmig = printmig.astype(int)
+printmig.index.name = 'country'
+r"\begin{tabular}{c}SSP income,\\ out-migration\end{tabular}"
+printmig.columns = [r'\begin{{tabular}}{{c}}{}\\{}\end{{tabular}}'.format(*col.split(',')) for col in printmig.columns]
+print(printmig.to_latex(index=True, escape=False))
+
 
