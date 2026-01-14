@@ -7,7 +7,9 @@ from matplotlib.collections import LineCollection
 
 # Script shortened from original file: compile_reg_coefs
 
-runs = ['sspgdp_gdptime_1990_quadT_linP',]
+# Run with urban or rural specification
+#runs = ['sspgdp_gdptime_1990_quadT_linP',]
+runs = ['sspgdp_gdptime_1990_quadT_linP_urban',]
 
 #dropv = ['gdppc1','gdppc2','outmigm1','constant']
 dropv = ['gdppc1','gdppc2','constant']
@@ -22,7 +24,8 @@ dat = pd.concat(dats,axis=1)
 #   Make marginal figure
 #   #   #   #   #   #   #   #   #
 
-r = 'sspgdp_gdptime_1990_quadT_linP'
+#r = 'sspgdp_gdptime_1990_quadT_linP'
+r = runs[0]
 cov = pd.read_csv('../data/projections/'+r+'/reg/rep000_cov.csv',index_col=0)
 cov = cov.drop(dropv).drop(columns=dropv)
 
@@ -88,8 +91,14 @@ if True:
         labsT.append('GDPpc={}'.format(g))
     ax.set_ylabel('Climate-driven\nrural out-migration rate',fontsize=12)
     ax.set_xlabel('Temperature',fontsize=12)
-    ax.set_ylim(-0.05,0.27)
-    ax.legend(linesT,labsT,loc=4)
+
+    # Different y limits, but same range
+    if 'urban' in r:
+        ax.set_ylim(-0.22,0.1)
+        ax.legend(linesT,labsT,loc=2)
+    else:
+        ax.set_ylim(-0.05,0.27)
+        ax.legend(linesT,labsT,loc=4)
     ax.set_xlim((0,32))
 
     # Repeat for precip
@@ -131,4 +140,10 @@ if True:
     ax.set_xlim((0,30))
 
     plt.tight_layout()
-    #plt.savefig('../figures/hist_parabolas_TP.png',dpi=400)
+    if 'urban' in r:
+        plt.savefig('../figures/hist_parabolas_TP_urban.png',dpi=400)
+    else:
+        plt.savefig('../figures/hist_parabolas_TP.png',dpi=400)
+
+
+

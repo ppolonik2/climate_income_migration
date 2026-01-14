@@ -133,6 +133,6 @@ gridslopes['SE_error']         = gridslopes['dif_bw_grid_eval'] / gridslopes['T_
 ids = dat.reset_index()[['entry_id','adm0_country_id','admin_id']].drop_duplicates()
 gridslopes = gridslopes.merge(ids,on='entry_id',how='left')
 
-gridslopes.to_csv('robustness_T_gdppc1_{}.csv'.format(gdp_opt))
+gridslopes.to_csv('../data/robustness/robustness_T_gdppc1_{}.csv'.format(gdp_opt))
 
 

@@ -141,6 +141,7 @@ elif eq_name.endswith('quadT_linP_urban'):
     no_split=False
     minimum_significance=0
     urban_opt=True
+    save_everything=True
 
 elif eq_name.endswith('quadT_linP_withlag'):
     equation = 'gdppc1+gdppc2+T+Tm1+T*gdppc1+Tm1*gdppc1+T*gdppc2+Tm1*gdppc2+T2+T2m1+T2*gdppc1+T2m1*gdppc1+T2*gdppc2+T2m1*gdppc2+P+Pm1+P*gdppc1+Pm1*gdppc1+P*gdppc2+Pm1*gdppc2+constant'
@@ -276,6 +277,12 @@ elif eq_name.endswith('quadT_linP_Tm1'):
 
 elif eq_name.endswith('quadT_linP_Tm1_inc'):
     equation = 'gdppc1+gdppc2+T+Tm1+T*gdppc1+Tm1*gdppc1+T*gdppc2+Tm1*gdppc2+T2+T2m1+T2*gdppc1+T2m1*gdppc1+T2*gdppc2+T2m1*gdppc2+P+Pm1+P*gdppc1+Pm1*gdppc1+P*gdppc2+Pm1*gdppc2+constant'
+    onward_1990=True
+    no_split=False
+    minimum_significance=0
+
+elif eq_name.endswith('gdponly'):
+    equation = 'gdppc1+gdppc2+constant'
     onward_1990=True
     no_split=False
     minimum_significance=0

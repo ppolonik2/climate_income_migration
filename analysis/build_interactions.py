@@ -6,6 +6,7 @@ import pdb
 
 
 exps = [
+    'gdptime_1990_gdponly',
     'gdptime_1990_quadT_linP_nogdp',
     'gdptime_1990_linT_linP',
     'gdptime_1990_quadT_linP_lingdp',

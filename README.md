@@ -33,7 +33,8 @@ Income strongly mediates climate-driven migration
     * the map figure is made by proj_figs_wgridonly.py
     * the uncertainty figure is made using uncertainty_summary.py
     * the SI histograms curves for T and P are made using hist_parabs_TP.py
-    * the SI cumulative distribution and map of grid-cell regressions are created in robustness_test.py
+    * the SI gridcell level robustness tests are conducted in robustness_test.py
+    * the SI cumulative distribution and map of those grid-cell regressions are created in robustness_figs.py
     * the SI histograms of different random sampling methods is created in sample_method_comparison.py
     * the SI figure of different specification projects (number markers) is created in spec_uncertainty.py
     * the SI 2D histogram of residuals is created in check_residuals.py

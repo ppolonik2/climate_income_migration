@@ -20,8 +20,8 @@ ccodes       = ['USA','CHN','IND','DEU','ZAF','ETH']
 ssp          = 2
 start_yr     = 2015
 end_yr       = 2050
-run_name     = 'gdptime_1990_quadT_linP'
-#run_name     = 'gdptime_1990_quadT_linP_shuffleclim'
+#run_name     = 'gdptime_1990_quadT_linP'
+run_name     = 'gdptime_1990_quadT_linP_urban'
 
 bonecmap = mcolors.LinearSegmentedColormap.from_list("gray", [[0]*3,[0.9]*3], N=256)
 
@@ -82,7 +82,10 @@ Ps      = np.linspace(0,30,Ncont)
 Ttrends = np.linspace(-0.5,1,Ncont)
 gdppcs  = np.linspace(5.5,12.5,Ncont)
 xs0 = {'T':Ts,'P':Ps,'Ttrend':Ttrends,'gdppc':gdppcs}
-clims = {'T':[-0.1,0.30],'P':[-0.35,0.05],'Ttrend':[-0.1,0.20]}
+if 'urban' in run_name:
+    clims = {'T':np.array([-0.1,0.30])-0.12,'P':np.array([-0.35,0.05]),'Ttrend':[-0.1,0.20]}
+else:
+    clims = {'T':[-0.1,0.30],'P':[-0.35,0.05],'Ttrend':[-0.1,0.20]}
 xs  = xs0.copy()
 for v,x in xs0.items():
     xs[v+'2'] = x**2
@@ -285,9 +288,13 @@ for Ti,Tm in enumerate(Tmeans):
     linesT.append(Line2D([0],[0],color=col,linewidth=3))
     labsT.append('T={}'.format(Tm))
 
-axPara[0].legend(linesT,labsT,loc=3)
 axPara[0].set_ylabel('Climate-driven\nrural out-migration rate',fontsize=12)
-axPara[0].set_ylim(-0.1,0.27)
+if 'urban' in run_name:
+    axPara[0].set_ylim(-0.2,0.17)
+    axPara[0].legend(linesT,labsT,loc=2)
+else:
+    axPara[0].set_ylim(-0.1,0.27)
+    axPara[0].legend(linesT,labsT,loc=3)
 axPara[0].set_xlim(axTop[0].get_xlim())
 
 linesP = []
@@ -310,9 +317,13 @@ for Pi,Pm in enumerate(Pmeans):
     axPara[1].add_collection(lc)
     linesP.append(Line2D([0],[0],color=col,linewidth=3))
     labsP.append('P={}'.format(Pm))
-axPara[1].legend(linesP,labsP,loc=3)
 axPara[1].set_ylabel('Climate-driven\nrural out-migration rate',fontsize=12)
-axPara[1].set_ylim(-0.08,0.02)
+if 'urban' in run_name:
+    axPara[1].legend(linesP,labsP,loc=2)
+    axPara[1].set_ylim(-0.01,0.09)
+else:
+    axPara[1].legend(linesP,labsP,loc=3)
+    axPara[1].set_ylim(-0.08,0.02)
 axPara[1].set_xlim(axTop[1].get_xlim())
 
 
@@ -336,5 +347,8 @@ for axi,ax in enumerate([axPara[0],axPara[1],axSide[0],axTop[0],axTop[1],axSide[
     ax.annotate(abc[axi],(0,1.00),xycoords='axes fraction',ha='left',va='bottom',fontsize=14)
 
 #plt.savefig('../figures/parabolas_contours.png',dpi=500)
-#plt.savefig('../figures/parabolas_contours_ssp2arrow.png',dpi=500)
+if 'urban' in run_name:
+    plt.savefig('../figures/parabolas_contours_ssp2arrow_urban.png',dpi=500)
+else:
+    plt.savefig('../figures/parabolas_contours_ssp2arrow.png',dpi=500)
 
