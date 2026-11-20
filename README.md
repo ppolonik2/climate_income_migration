@@ -1,4 +1,4 @@
-# Income strongly mediates climate-driven migration
+# Income strongly moderates climate-driven migration
 
 This is the repository for code related to the manuscript published in PNAS in 2026.
 
