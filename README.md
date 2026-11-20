@@ -1,7 +1,7 @@
-# climate_income_migration
+# Income strongly mediates climate-driven migration
 
-This is the repository for code related to the project:
-Income strongly mediates climate-driven migration
+This is the repository for code related to the manuscript published in PNAS in 2026.
+
 
 # Documentation
 * environment.yml contains the conda environment information about this project
